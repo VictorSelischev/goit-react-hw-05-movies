@@ -10,14 +10,14 @@ export const Container = styled.div`
 export const Header = styled.header`
   padding-top: 24px;
   padding-bottom: 24px;
+  border-bottom: 1px solid #08213d;
 `;
 
 export const Navigation = styled.nav`
   display: flex;
-
 `;
 
-export const Link = styled(NavLink)`
+export const NavItem = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 8px 16px;

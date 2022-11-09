@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Navigation, Link } from './SharedLayout.styled';
+import { Container, Header, Navigation, NavItem } from './SharedLayout.styled';
 import { AiTwotoneHome } from 'react-icons/ai';
 import { RiMovie2Fill } from 'react-icons/ri';
 
@@ -14,16 +14,16 @@ export const SharedLayout = () => {
       <Header>
         <Navigation>
           {navItems.map(({ href, text, icon: Icon }) => (
-            <Link to={href} key={href}>
+            <NavItem to={href} key={href}>
               <Icon size='24' style={{marginRight: 4}} />
               {text}
-            </Link>
+            </NavItem>
           ))}
-          {/* <Link to='/' end >Home</Link>
-                <Link to='/movies'>Movies</Link> */}
         </Navigation>
       </Header>
+
       <Outlet />
+
     </Container>
   );
 };
