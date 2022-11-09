@@ -1,4 +1,4 @@
-const Home = () => {
+const Movies = () => {
   return (
     <main>
       <h1>Welcome</h1>
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Movies;
