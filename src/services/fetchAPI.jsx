@@ -10,9 +10,9 @@ const urlMoviesTrending = `https://api.themoviedb.org/3/trending/movie/day?api_k
   });
 };
 
-export const getMovie = (id) => {
-const urlMovie = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
-    return fetch(urlMovie).then(response => {
+export const getMovieInfo = (id) => {
+const urlMovieInfo = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
+    return fetch(urlMovieInfo).then(response => {
         if (!response.ok) {
             throw new Error(response.status);
         }
