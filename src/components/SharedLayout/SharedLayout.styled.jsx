@@ -12,14 +12,25 @@ export const Header = styled.header`
   padding-bottom: 24px;
 `;
 
+export const Navigation = styled.nav`
+  display: flex;
+
+`;
+
 export const Link = styled(NavLink)`
+  display: flex;
+  align-items: center;
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;
-  color: black;
+  color: #08213d;
   font-weight: 500;
 
   &.active {
-    color: orage;
+    color: #0970e5;
+  }
+
+  :hover {
+    text-decoration: underline;
   }
 `;
