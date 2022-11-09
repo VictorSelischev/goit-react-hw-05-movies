@@ -1,13 +1,11 @@
+import { Outlet } from "react-router-dom";
+import MovieDetails from "./MovieDetails";
+
 const Movies = () => {
   return (
     <main>
-      <h1>Welcome Movies</h1>
-      <img src="https://via.placeholder.com/960x240" alt="" />
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-        laboriosam placeat incidunt rem illum animi nemo quibusdam quia
-        voluptatum voluptate.
-      </p>
+      <MovieDetails />
+      <Outlet />
     </main>
   );
 };
