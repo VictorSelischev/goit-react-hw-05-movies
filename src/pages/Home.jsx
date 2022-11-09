@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <main>
       <h1 style={{ paddingTop: 32 }}>Trending Today</h1>
-      <ul style={{ paddingTop: 32, paddingLeft: 16, listStyle: 'none' }}>
+      <ul style={{ paddingTop: 32, paddingLeft: 16 }}>
         {movies.map(({ id, title }) => (
           <li key={id} style={{ marginBottom: 8 }}>
             <Link
