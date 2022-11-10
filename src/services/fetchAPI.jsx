@@ -19,3 +19,13 @@ const urlMovieInfo = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY
         return response.json();
     })
 }
+
+export const getMovieCast = (id) => {
+  const movieCast = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+  return fetch(movieCast).then(response => {
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+    return response.json();
+  })
+}

@@ -29,11 +29,9 @@ const MovieDetails = () => {
 
   const urlMoviePoster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
 
-  console.log(poster_path);
-
   return (
     <>
-      <div style={{ display: 'flex', paddingTop: 32 }}>
+      <div style={{ display: 'flex', paddingTop: 32, paddingBottom: 32 }}>
         <img
           src={urlMoviePoster}
           alt={title}
@@ -71,7 +69,7 @@ const MovieDetails = () => {
         </div>
       </div>
       <div>
-        <Outlet />
+        <Outlet  />
       </div>
     </>
   );
