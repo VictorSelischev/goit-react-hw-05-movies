@@ -16,5 +16,5 @@ export const ListItem = styled.li`
 `;
 
 export const Image = styled.img`
-    // width: 130px;
+    margin-bottom: 8px;
 `;

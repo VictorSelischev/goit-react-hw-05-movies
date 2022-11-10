@@ -39,7 +39,7 @@ const Cast = () => {
           return (
             <ListItem key={credit_id}>
               <Image src={urlCastImage} alt={original_name} />
-              <p>{original_name}</p>
+              <p style={{marginBottom: 12}}>{original_name}</p>
               <p>Character: {character}</p>
             </ListItem>
           );
