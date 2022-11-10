@@ -38,12 +38,12 @@ const MovieDetails = () => {
           style={{ width: 300 }}
         />
         <div style={{ paddingLeft: 32 }}>
-          <h3>{title}</h3>
-          <p>User score: {Math.round(vote_average * 10)}%</p>
-          <h4>Overview</h4>
-          <p style={{ lineHeight: 1.4 }}>{overview}</p>
-          <h4>Genres</h4>
-          <p>
+          <h3 style={{marginBottom: 12}}>{title}</h3>
+          <p style={{marginBottom: 24}}>User score: {Math.round(vote_average * 10)}%</p>
+          <h4 style={{marginBottom: 12}}>Overview</h4>
+          <p style={{ lineHeight: 1.4, marginBottom: 24 }}>{overview}</p>
+          <h4 style={{marginBottom: 12}}>Genres</h4>
+          <p style={{marginBottom: 24}}>
             {genres.map(genre => (
               <span key={genre.id}>{genre.name} </span>
             ))}
