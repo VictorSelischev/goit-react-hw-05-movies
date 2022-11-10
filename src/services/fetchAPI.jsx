@@ -29,3 +29,13 @@ export const getMovieCast = (id) => {
     return response.json();
   })
 }
+
+export const getMovieReviews = (id) => {
+  const urlMovieReviews = `https://api.themoviedb.org/3/movie${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
+  return fetch(urlMovieReviews).then(response => {
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+    return response.json();
+  });
+}
