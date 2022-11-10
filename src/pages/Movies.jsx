@@ -4,8 +4,11 @@ import MovieDetails from "./MovieDetails";
 const Movies = () => {
   return (
     <main>
-      <MovieDetails />
-      <Outlet />
+      <form action="" style={{marginTop: 32}}>
+        <input type="text" />
+        <button type='submit'>Search</button>
+      </form>
+      
     </main>
   );
 };
