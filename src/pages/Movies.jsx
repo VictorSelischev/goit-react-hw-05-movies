@@ -24,6 +24,7 @@ const Movies = () => {
         setVisibleMovies(data.results);
       })
       .catch(error => console.log(error));
+    setSearchParams({});
   };
 
   return (
