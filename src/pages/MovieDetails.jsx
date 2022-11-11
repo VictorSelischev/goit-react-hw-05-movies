@@ -2,6 +2,16 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getMovieInfo } from 'services/fetchAPI';
 import { Outlet } from 'react-router-dom';
+import {
+  Button,
+  Image,
+  Wrapper,
+  Description,
+  FilmName,
+  DescriptionText,
+  DescriptionTitle,
+} from './MovieDetails.styled';
+import { IoArrowUndoSharp } from 'react-icons/io5';
 
 const addInfos = [
   { href: 'cast', text: 'Cast' },
@@ -31,32 +41,28 @@ const MovieDetails = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', paddingTop: 32, paddingBottom: 32 }}>
-        <img
-          src={urlMoviePoster}
-          alt={title}
-          style={{ width: 300 }}
-        />
-        <div style={{ paddingLeft: 32 }}>
-          <h3 style={{marginBottom: 12}}>{title}</h3>
-          <p style={{marginBottom: 24}}>User score: {Math.round(vote_average * 10)}%</p>
-          <h4 style={{marginBottom: 12}}>Overview</h4>
-          <p style={{ lineHeight: 1.4, marginBottom: 24 }}>{overview}</p>
-          <h4 style={{marginBottom: 12}}>Genres</h4>
-          <p style={{marginBottom: 24}}>
+      <Button type="button">
+        <IoArrowUndoSharp size="16" style={{ marginRight: 4 }} />
+        Go Back
+      </Button>
+      <Wrapper>
+        <Image src={urlMoviePoster} alt={title} />
+        <Description>
+          <FilmName>{title}</FilmName>
+          <DescriptionText>
+            User score: {Math.round(vote_average * 10)}%
+          </DescriptionText>
+          <DescriptionTitle>Overview</DescriptionTitle>
+          <DescriptionText>{overview}</DescriptionText>
+          <DescriptionTitle>Genres</DescriptionTitle>
+          <DescriptionText>
             {genres.map(genre => (
               <span key={genre.id}>{genre.name} </span>
             ))}
-          </p>
-          <h4
-            style={{
-              paddingTop: 8,
-              marginBottom: 8,
-              borderTop: '1px solid',
-            }}
-          >
+          </DescriptionText>
+          <DescriptionTitle style={{ borderTop: '1px solid' }}>
             Additional information
-          </h4>
+          </DescriptionTitle>
           <ul>
             {addInfos.map(({ href, text }) => (
               <li key={href}>
@@ -66,10 +72,10 @@ const MovieDetails = () => {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
+        </Description>
+      </Wrapper>
       <div>
-        <Outlet  />
+        <Outlet />
       </div>
     </>
   );
