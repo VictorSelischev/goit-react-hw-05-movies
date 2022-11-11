@@ -1,14 +1,28 @@
-import { Outlet } from "react-router-dom";
-import MovieDetails from "./MovieDetails";
+import { useSearchParams } from 'react-router-dom';
+import { getMovieQuery } from 'services/fetchAPI';
 
 const Movies = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const name = searchParams.get('query');
+  console.log(name);
+
+  getMovieQuery(name).then(data => console.log(data)).catch(error => console.log(error));
+
   return (
     <main>
-      <form action="" style={{marginTop: 32}}>
-        <input type="text" />
-        <button type='submit'>Search</button>
+      <form style={{ marginTop: 32, marginBottom: 32 }}>
+        <input
+          type="text"
+          style={{ outline: 'none' }}
+          placeholder="Please enter movie"
+          value={name}
+          onChange={e =>
+            setSearchParams({ query: e.target.value })
+          }
+        />
+        <button type="submit">Search</button>
       </form>
-      
+      <p>{name}</p>
     </main>
   );
 };
