@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { getMovieInfo } from 'services/fetchAPI';
 import { Outlet } from 'react-router-dom';
 import {
@@ -21,6 +21,10 @@ const addInfos = [
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState(null);
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? "/movies";
+
+  // console.log(location);
 
   useEffect(() => {
     getMovieInfo(movieId)
@@ -30,9 +34,7 @@ const MovieDetails = () => {
       .catch(error => console.log(error));
   }, [movieId]);
 
-  if (movieInfo === null) {
-    return;
-  }
+  if (!movieInfo) { return null };
 
   const { poster_path, title, vote_average, overview, genres } =
     movieInfo;
@@ -41,10 +43,10 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Button type="button">
+      <Link to={backLinkHref} style={{textDecoration: 'none'}}><Button type="button" >
         <IoArrowUndoSharp size="16" style={{ marginRight: 4 }} />
         Go Back
-      </Button>
+      </Button></Link>
       <Wrapper>
         <Image src={urlMoviePoster} alt={title} />
         <Description>
@@ -66,7 +68,7 @@ const MovieDetails = () => {
           <ul>
             {addInfos.map(({ href, text }) => (
               <li key={href}>
-                <Link to={href} style={{ lineHeight: 1.4 }}>
+                <Link to={href} state={{from: '/movies'}} style={{ lineHeight: 1.4 }}>
                   {text}
                 </Link>
               </li>
@@ -74,9 +76,7 @@ const MovieDetails = () => {
           </ul>
         </Description>
       </Wrapper>
-      <div>
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 };

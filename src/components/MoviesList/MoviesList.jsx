@@ -3,7 +3,8 @@ import { TbMovie } from 'react-icons/tb';
 import { ListItem } from './MoviesList.styled';
 import PropTypes from 'prop-types';
 
-export const MoviesList = ({ movies }) => {
+export const MoviesList = ({ movies, location }) => {
+
   return (
     <ul>
       {movies.map(movie => (
@@ -11,6 +12,7 @@ export const MoviesList = ({ movies }) => {
           <TbMovie style={{ paddingRight: 8 }} />
           <Link
             to={`${movie.id}`}
+            state={{from: location}}
             style={{
               textDecoration: 'none',
               color: '#08213d',
@@ -27,10 +29,10 @@ export const MoviesList = ({ movies }) => {
 };
 
 MoviesList.propTypes = {
-    movies: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            original_title: PropTypes.string.isRequired,
-        })
-    ),
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      original_title: PropTypes.string.isRequired,
+    })
+  ),
 };

@@ -1,22 +1,15 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { getMovieQuery } from 'services/fetchAPI';
+import { SearchBox } from 'components/SearchBox/SearchBox';
 
 const Movies = () => {
   const [visibleMovies, setVisibleMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const name = searchParams.get('query') ?? '';
-  console.log(name);
 
-  // useEffect(() => {
-  //   if (name === '') return;
-  //   getMovieQuery(name)
-  //     .then(data => {
-  //       setVisibleMovies(data.results);
-  //     })
-  //     .catch(error => console.log(error));
-  // }, [name]);
+  const location = useLocation();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -28,24 +21,18 @@ const Movies = () => {
     setSearchParams({});
   };
 
+  const changeFilter = value => {
+    setSearchParams(value !== '' ? { query: value } : {});
+  };
+
   return (
     <main>
-      <form
-        style={{ marginTop: 32, marginBottom: 32 }}
+      <SearchBox
+        name={name}
+        onChange={changeFilter}
         onSubmit={handleSubmit}
-      >
-        <input
-          type="text"
-          style={{ outline: 'none' }}
-          placeholder="Please enter movie"
-          value={name}
-          onChange={e =>
-            setSearchParams({ query: e.target.value })
-          }
-        />
-        <button type="submit">Search</button>
-      </form>
-      <MoviesList movies={visibleMovies} />
+      />
+      <MoviesList movies={visibleMovies} location={location} />
     </main>
   );
 };
