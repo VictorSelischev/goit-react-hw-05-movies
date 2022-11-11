@@ -1,9 +1,11 @@
+import { MoviesList } from 'components/MoviesList/MoviesList';
 import { useSearchParams } from 'react-router-dom';
 import { getMovieQuery } from 'services/fetchAPI';
 
+
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const name = searchParams.get('query');
+  const name = searchParams.get('query') ?? "";
   console.log(name);
 
   getMovieQuery(name).then(data => console.log(data)).catch(error => console.log(error));
@@ -22,7 +24,7 @@ const Movies = () => {
         />
         <button type="submit">Search</button>
       </form>
-      <p>{name}</p>
+      {/* <MoviesList movies={ } /> */}
     </main>
   );
 };
