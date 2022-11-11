@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { TbMovie } from 'react-icons/tb';
 import { ListItem } from './MoviesList.styled';
+import PropTypes from 'prop-types';
 
 export const MoviesList = ({ movies }) => {
   return (
@@ -23,4 +24,13 @@ export const MoviesList = ({ movies }) => {
       ))}
     </ul>
   );
+};
+
+MoviesList.propTypes = {
+    movies: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            original_title: PropTypes.string.isRequired,
+        })
+    ),
 };
