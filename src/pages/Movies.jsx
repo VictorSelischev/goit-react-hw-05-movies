@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { getMovieQuery } from 'services/fetchAPI';
 
@@ -10,6 +10,7 @@ const Movies = () => {
   console.log(name);
 
   // useEffect(() => {
+  //   if (name === '') return;
   //   getMovieQuery(name)
   //     .then(data => {
   //       setVisibleMovies(data.results);
