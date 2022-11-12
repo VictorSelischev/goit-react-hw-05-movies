@@ -1,12 +1,11 @@
 import { getMovieCast } from 'services/fetchAPI';
 import { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Image, List, ListItem, SectionTitle } from './Casts.styled';
 
 const Cast = () => {
   const [casts, setCasts] = useState(null);
   const { movieId } = useParams();
-  const location = useLocation();
 
   useEffect(() => {
     getMovieCast(movieId)
