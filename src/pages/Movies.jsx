@@ -18,7 +18,7 @@ const Movies = () => {
         setVisibleMovies(data.results);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [name]);
 
   const handleSubmit = e => {
     e.preventDefault();
