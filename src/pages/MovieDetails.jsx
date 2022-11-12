@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { getMovieInfo } from 'services/fetchAPI';
 import { Outlet } from 'react-router-dom';
@@ -22,7 +22,7 @@ const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? "/movies";
+  const backLinkHref = location.state?.from ?? '/movies';
 
   // console.log(location);
 
@@ -34,7 +34,9 @@ const MovieDetails = () => {
       .catch(error => console.log(error));
   }, [movieId]);
 
-  if (!movieInfo) { return null };
+  if (!movieInfo) {
+    return null;
+  }
 
   const { poster_path, title, vote_average, overview, genres } =
     movieInfo;
@@ -43,10 +45,15 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkHref} style={{textDecoration: 'none'}}><Button type="button" >
-        <IoArrowUndoSharp size="16" style={{ marginRight: 4 }} />
-        Go Back
-      </Button></Link>
+      <Link to={backLinkHref} style={{ textDecoration: 'none' }}>
+        <Button type="button">
+          <IoArrowUndoSharp
+            size="16"
+            style={{ marginRight: 4 }}
+          />
+          Go Back
+        </Button>
+      </Link>
       <Wrapper>
         <Image src={urlMoviePoster} alt={title} />
         <Description>
@@ -68,7 +75,11 @@ const MovieDetails = () => {
           <ul>
             {addInfos.map(({ href, text }) => (
               <li key={href}>
-                <Link to={href} state={{from: '/movies'}} style={{ lineHeight: 1.4 }}>
+                <Link
+                  to={href}
+                  state={{ from: backLinkHref }}
+                  style={{ lineHeight: 1.4 }}
+                >
                   {text}
                 </Link>
               </li>
@@ -76,7 +87,9 @@ const MovieDetails = () => {
           </ul>
         </Description>
       </Wrapper>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

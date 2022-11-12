@@ -7,7 +7,6 @@ const Cast = () => {
   const [casts, setCasts] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     getMovieCast(movieId)

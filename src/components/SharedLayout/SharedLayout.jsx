@@ -1,5 +1,11 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Navigation, NavItem } from './SharedLayout.styled';
+import {
+  Container,
+  Header,
+  Navigation,
+  NavItem,
+} from './SharedLayout.styled';
 import { AiTwotoneHome } from 'react-icons/ai';
 import { RiMovie2Fill } from 'react-icons/ri';
 
@@ -15,15 +21,15 @@ export const SharedLayout = () => {
         <Navigation>
           {navItems.map(({ href, text, icon: Icon }) => (
             <NavItem to={href} key={href}>
-              <Icon size='24' style={{marginRight: 4}} />
+              <Icon size="24" style={{ marginRight: 4 }} />
               {text}
             </NavItem>
           ))}
         </Navigation>
       </Header>
-
-      <Outlet />
-
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

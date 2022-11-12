@@ -1,5 +1,5 @@
 import { useSearchParams, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { getMovieQuery } from 'services/fetchAPI';
 import { SearchBox } from 'components/SearchBox/SearchBox';
@@ -11,6 +11,15 @@ const Movies = () => {
 
   const location = useLocation();
 
+  useEffect(() => {
+    if (!name) return;
+    getMovieQuery(name)
+      .then(data => {
+        setVisibleMovies(data.results);
+      })
+      .catch(error => console.log(error));
+  }, []);
+
   const handleSubmit = e => {
     e.preventDefault();
     getMovieQuery(name)
@@ -18,7 +27,7 @@ const Movies = () => {
         setVisibleMovies(data.results);
       })
       .catch(error => console.log(error));
-    setSearchParams({});
+    // setSearchParams({});
   };
 
   const changeFilter = value => {
